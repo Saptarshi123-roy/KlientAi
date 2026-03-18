@@ -7,133 +7,105 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --black:#080808;
-  --white:#f5f2ee;
-  --accent:#FF4D00;
-  --gold:#FFB800;
-  --g1:#1a1a1a;
-  --g2:#242424;
-  --muted:#777;
-  --fd:'Syne',sans-serif;
-  --fb:'DM Sans',sans-serif;
-}
+:root{--black:#080808;--white:#f5f2ee;--accent:#FF4D00;--gold:#FFB800;--g1:#1a1a1a;--g2:#242424;--muted:#777}
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:var(--fb);overflow-x:hidden}
- 
-/* ── PAGES ── */
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 .pg{display:none;min-height:100vh}
-.pg.on{display:block;animation:up .4s ease both}
-@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
- 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
-.logo{font-family:var(--fd);font-size:1.4rem;font-weight:800;letter-spacing:-.03em;cursor:pointer}
+.pg.on{display:block}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.95);border-bottom:1px solid rgba(255,255,255,.05)}
+.logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-.03em;cursor:pointer;color:var(--white);text-decoration:none}
 .logo b{color:var(--accent)}
 .navsteps{display:flex;align-items:center;gap:6px}
-.st{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--muted);transition:all .3s;font-family:var(--fb)}
+.st{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--muted);transition:all .3s}
 .st.on{border-color:var(--accent);color:var(--accent)}
 .st.done{background:var(--accent);border-color:var(--accent);color:#fff}
 .stl{width:18px;height:1px;background:rgba(255,255,255,.08)}
- 
-/* ── PROGRESS ── */
-#bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:9999;transition:width .4s ease;box-shadow:0 0 12px rgba(255,77,0,.5);width:0}
- 
-/* ── BUTTONS ── */
-.btn{padding:.9rem 2rem;border-radius:100px;font-family:var(--fb);font-size:.95rem;font-weight:500;cursor:pointer;transition:all .2s;border:none}
-.btn-p{background:var(--accent);color:#fff;box-shadow:0 0 30px rgba(255,77,0,.25)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(255,77,0,.45)}
-.btn-s{background:transparent;color:var(--muted);border:1.5px solid rgba(255,255,255,.12)}
-.btn-s:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
-.nav-row{display:flex;gap:1rem;margin-top:2.5rem;align-items:center}
- 
-/* ── INNER WRAP ── */
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:9999;transition:width .4s ease;width:0}
 .wrap{max-width:740px;margin:0 auto;padding:7rem 2rem 4rem}
 .tag{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.6rem}
-.h2{font-family:var(--fd);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:.6rem}
+.h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:.6rem}
 .sub{color:var(--muted);font-size:.95rem;line-height:1.7;font-weight:300;margin-bottom:2.5rem}
 .err{color:#ff6b6b;font-size:.82rem;margin-top:.4rem;display:none}
- 
-/* ══ PAGE 1 ══ */
+.btn{padding:.9rem 2rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;transition:all .2s;border:none;display:inline-block}
+.btnp{background:var(--accent);color:#fff}
+.btnp:hover{opacity:.85}
+.btns{background:transparent;color:var(--muted);border:1.5px solid rgba(255,255,255,.15)}
+.btns:hover{color:var(--white)}
+.nav-row{display:flex;gap:1rem;margin-top:2.5rem;align-items:center}
+
+/* PAGE 1 */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;text-align:center}
 .hbg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 0%,rgba(255,77,0,.13) 0%,transparent 70%)}
-.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%)}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px}
 .hin{max-width:860px;position:relative;z-index:2}
-.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,77,0,.1);border:1px solid rgba(255,77,0,.3);border-radius:100px;padding:.4rem 1rem;font-size:.78rem;color:var(--accent);font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.8rem}
-.badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
-.h1{font-family:var(--fd);font-size:clamp(2.8rem,7vw,5.8rem);font-weight:800;line-height:.92;letter-spacing:-.04em;margin-bottom:1.4rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,77,0,.1);border:1px solid rgba(255,77,0,.3);border-radius:100px;padding:.4rem 1rem;font-size:.78rem;color:var(--accent);font-weight:500;text-transform:uppercase;margin-bottom:1.8rem}
+.h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,5.8rem);font-weight:800;line-height:.92;letter-spacing:-.04em;margin-bottom:1.4rem}
 .h1 .a{color:var(--accent)}
 .h1 .d{color:rgba(245,242,238,.28);font-style:italic;font-weight:600}
 .hero-sub{font-size:1.1rem;color:rgba(245,242,238,.5);max-width:500px;margin:0 auto 2.5rem;line-height:1.7;font-weight:300}
 .hero-sub strong{color:var(--white);font-weight:500}
 .stats{display:flex;gap:2.5rem;justify-content:center;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.07);flex-wrap:wrap}
-.sn{font-family:var(--fd);font-size:1.9rem;font-weight:800;letter-spacing:-.03em}
+.sn{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;letter-spacing:-.03em}
 .sn span{color:var(--accent)}
 .sl{font-size:.72rem;color:var(--muted);margin-top:.2rem;letter-spacing:.06em;text-transform:uppercase}
 .mq{overflow:hidden;padding:1.4rem 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
 .mq-t{display:flex;gap:2.5rem;animation:mq 22s linear infinite;width:max-content}
-.mq-i{font-family:var(--fd);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1);white-space:nowrap;display:flex;align-items:center;gap:1.5rem}
+.mq-i{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1);white-space:nowrap;display:flex;align-items:center;gap:1.5rem}
 .mq-i span{color:var(--accent)}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .sec{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .steps-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5px;background:rgba(255,255,255,.05);border-radius:16px;overflow:hidden}
 .step{background:var(--black);padding:2rem;position:relative;transition:background .25s}
 .step:hover{background:var(--g1)}
-.step-bar{position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.step:hover .step-bar{transform:scaleX(1)}
-.snum{font-family:var(--fd);font-size:3rem;font-weight:800;color:rgba(255,255,255,.04);line-height:1;margin-bottom:.8rem}
+.snum{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:rgba(255,255,255,.04);line-height:1;margin-bottom:.8rem}
 .sico{font-size:1.6rem;margin-bottom:.6rem}
-.step h3{font-family:var(--fd);font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.step h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.4rem}
 .step p{color:var(--muted);font-size:.83rem;line-height:1.6;font-weight:300}
- 
-/* ══ PAGE 2 ══ */
+
+/* PAGE 2 */
 .sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.7rem;margin-bottom:2.5rem}
-.sk-card{background:var(--g1);border-radius:12px;padding:1.2rem;border:1.5px solid rgba(255,255,255,.06);cursor:pointer;transition:all .2s;text-align:center;user-select:none}
-.sk-card:hover{border-color:rgba(255,77,0,.35);background:var(--g2)}
+.sk-card{background:var(--g1);border-radius:12px;padding:1.2rem;border:1.5px solid rgba(255,255,255,.06);cursor:pointer;transition:all .2s;text-align:center}
+.sk-card:hover{border-color:rgba(255,77,0,.35)}
 .sk-card.sel{border-color:var(--accent);background:rgba(255,77,0,.1)}
 .sk-ico{font-size:1.8rem;margin-bottom:.4rem}
 .sk-nm{font-size:.83rem;font-weight:500}
 .lang-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
-.lb{padding:.5rem 1.2rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.1);background:transparent;color:var(--white);font-family:var(--fb);font-size:.88rem;cursor:pointer;transition:all .2s;user-select:none}
-.lb:hover{border-color:rgba(255,77,0,.4)}
+.lb{padding:.5rem 1.2rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.1);background:transparent;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.88rem;cursor:pointer;transition:all .2s}
 .lb.sel{background:var(--accent);border-color:var(--accent);font-weight:500}
- 
-/* ══ PAGE 3 ══ */
+
+/* PAGE 3 */
 .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-bottom:1.5rem}
 .pc{background:var(--g1);border-radius:20px;padding:2rem;border:1.5px solid rgba(255,255,255,.07);position:relative;transition:all .25s}
-.pc:hover{transform:translateY(-4px);border-color:rgba(255,77,0,.3)}
 .pc.sel{border-color:var(--accent);background:rgba(255,77,0,.08)}
 .pb{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:.68rem;font-weight:700;padding:.25rem .9rem;border-radius:100px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .pt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;font-weight:500}
-.pa{font-family:var(--fd);font-size:2.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.2rem}
+.pa{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.2rem}
 .pp{font-size:.78rem;color:var(--muted);margin-bottom:1.4rem}
 .pf{list-style:none;margin-bottom:1.4rem}
 .pf li{padding:.38rem 0;font-size:.83rem;color:rgba(255,255,255,.6);font-weight:300;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(255,255,255,.05)}
 .pf li::before{content:'✓';color:var(--gold);font-weight:700;font-size:.72rem;flex-shrink:0}
-.psb{width:100%;padding:.7rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.14);background:transparent;color:var(--white);font-family:var(--fb);font-size:.83rem;font-weight:500;cursor:pointer;transition:all .2s}
+.psb{width:100%;padding:.7rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.14);background:transparent;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:500;cursor:pointer;transition:all .2s}
 .pc.sel .psb{background:var(--accent);border-color:var(--accent)}
- 
-/* ══ PAGE 4 ══ */
+
+/* PAGE 4 */
 .plan-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,77,0,.1);border:1px solid rgba(255,77,0,.3);border-radius:100px;padding:.35rem 1rem;font-size:.83rem;color:var(--accent);font-weight:500;margin-bottom:2rem}
 .fg{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
 .fl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.fi,.fs,.ft{background:var(--g1);border:1.5px solid rgba(255,255,255,.08);border-radius:10px;padding:.82rem 1rem;color:var(--white);font-family:var(--fb);font-size:.93rem;outline:none;transition:border-color .2s;width:100%}
+.fi,.fs,.ft{background:var(--g1);border:1.5px solid rgba(255,255,255,.08);border-radius:10px;padding:.82rem 1rem;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.93rem;outline:none;transition:border-color .2s;width:100%}
 .fi:focus,.fs:focus,.ft:focus{border-color:var(--accent)}
 .fi::placeholder,.ft::placeholder{color:var(--muted)}
 .fs option{background:var(--g1)}
 .ft{resize:vertical;min-height:75px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
- 
-/* ══ PAGE 5 ══ */
+
+/* PAGE 5 */
 .conf{max-width:680px;margin:0 auto;padding:7rem 2rem 4rem;text-align:center}
-.cico{font-size:4rem;margin-bottom:1.2rem;animation:bonce .8s ease}
-@keyframes bonce{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.ct{font-family:var(--fd);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.6rem}
+.cico{font-size:4rem;margin-bottom:1.2rem}
+.ct{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.6rem}
 .cs{color:var(--muted);font-size:.95rem;line-height:1.7;font-weight:300;margin-bottom:2.5rem}
 .early{background:linear-gradient(135deg,rgba(255,184,0,.15),rgba(255,77,0,.1));border:1.5px solid rgba(255,184,0,.3);border-radius:16px;padding:1.5rem 2rem;margin-bottom:1.8rem}
 .early-ico{font-size:2.2rem;margin-bottom:.4rem}
-.early-t{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:.2rem}
+.early-t{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:.2rem}
 .early-s{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:300}
 .perks{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.8rem;text-align:left}
 .pk{background:var(--g2);border-radius:12px;padding:1rem;border:1px solid rgba(255,255,255,.05)}
@@ -141,7 +113,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:1.2rem 3rem;display:
 .pk-t{font-size:.83rem;font-weight:500;margin-bottom:.15rem}
 .pk-s{font-size:.76rem;color:var(--muted);font-weight:300;line-height:1.5}
 .tl{margin-bottom:1.8rem;text-align:left}
-.tl-h{font-family:var(--fd);font-size:1rem;font-weight:700;margin-bottom:1.2rem}
+.tl-h{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.2rem}
 .tl-item{display:flex;gap:.9rem;margin-bottom:.9rem;align-items:flex-start}
 .tl-dot{width:30px;height:30px;border-radius:50%;background:rgba(255,77,0,.12);border:1.5px solid rgba(255,77,0,.3);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:2px}
 .tl-line{width:1px;height:16px;background:rgba(255,77,0,.18);margin-left:14px}
@@ -149,33 +121,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:1.2rem 3rem;display:
 .tl-item p{font-size:.8rem;color:var(--muted);font-weight:300;line-height:1.5}
 .guar{background:var(--g1);border-radius:14px;padding:1.4rem 1.8rem;border:1.5px solid rgba(255,255,255,.06);display:flex;gap:.9rem;align-items:flex-start;margin-bottom:1.8rem;text-align:left}
 .guar-ico{font-size:1.8rem;flex-shrink:0}
-.guar-t{font-family:var(--fd);font-size:.95rem;font-weight:700;margin-bottom:.25rem}
+.guar-t{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem}
 .guar-s{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.6}
 .share-box{background:var(--g1);border-radius:14px;padding:1.4rem 1.8rem;margin-bottom:1.8rem}
-.share-t{font-family:var(--fd);font-size:.95rem;font-weight:700;margin-bottom:.25rem}
+.share-t{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem}
 .share-s{font-size:.82rem;color:var(--muted);margin-bottom:1rem;font-weight:300}
 .share-btns{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
-.shr{padding:.5rem 1.2rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.1);background:transparent;color:var(--white);font-family:var(--fb);font-size:.8rem;cursor:pointer;transition:all .2s}
+.shr{padding:.5rem 1.2rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.1);background:transparent;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer;transition:all .2s}
 .shr:hover{background:rgba(255,255,255,.07)}
 footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.78rem;flex-wrap:wrap;gap:.5rem}
- 
-@media(max-width:700px){
-  nav{padding:1rem 1.2rem}
-  .navsteps{display:none}
-  .wrap{padding:6rem 1.2rem 3rem}
-  .form-row{grid-template-columns:1fr}
-  .perks{grid-template-columns:1fr}
-  .hero{padding:7rem 1.2rem 3rem}
-  footer{padding:1.2rem;flex-direction:column;text-align:center}
-}
+@media(max-width:700px){nav{padding:1rem 1.2rem}.navsteps{display:none}.wrap{padding:6rem 1.2rem 3rem}.form-row{grid-template-columns:1fr}.perks{grid-template-columns:1fr}.hero{padding:7rem 1.2rem 3rem}footer{padding:1.2rem;flex-direction:column;text-align:center}}
 </style>
 </head>
 <body>
- 
+
 <div id="bar"></div>
- 
+
 <nav>
-  <div class="logo" onclick="showPage(1)">Klient<b>AI</b></div>
+  <a class="logo" href="#">Klient<b>AI</b></a>
   <div class="navsteps">
     <div class="st on" id="st1">1</div><div class="stl"></div>
     <div class="st" id="st2">2</div><div class="stl"></div>
@@ -184,7 +147,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
     <div class="st" id="st5">✓</div>
   </div>
 </nav>
- 
+
 <!-- PAGE 1 -->
 <div class="pg on" id="pg1">
   <div class="hero">
@@ -193,7 +156,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
       <div class="badge">🇮🇳 Built for Indian Freelancers</div>
       <div class="h1">Stop Chasing Clients.<br><span class="a">Let AI Call Them</span><br><span class="d">for you.</span></div>
       <p class="hero-sub">KlientAI finds your ideal clients and calls them in <strong>Hindi, Bengali, Tamil, Telugu or English</strong> — while you focus on work you love.</p>
-      <button class="btn btn-p" onclick="showPage(2)">Get Started — It's Free →</button>
+      <button class="btn btnp" id="startBtn">Get Started — It's Free →</button>
       <div class="stats">
         <div><div class="sn">15M<span>+</span></div><div class="sl">Indian Freelancers</div></div>
         <div><div class="sn">5<span>+</span></div><div class="sl">Languages</div></div>
@@ -221,19 +184,19 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
     <div class="h2">From zero clients to booked calendar</div>
     <p class="sub">No sales experience. No anxiety. No rejection. Just results.</p>
     <div class="steps-g">
-      <div class="step"><div class="step-bar"></div><div class="snum">01</div><div class="sico">⚡</div><h3>Tell us your skills</h3><p>Select your skill and preferred call language. Takes 2 minutes.</p></div>
-      <div class="step"><div class="step-bar"></div><div class="snum">02</div><div class="sico">💎</div><h3>Pick your plan</h3><p>Free, Pro or Unlimited — based on how many clients you want.</p></div>
-      <div class="step"><div class="step-bar"></div><div class="snum">03</div><div class="sico">🎯</div><h3>AI finds clients</h3><p>KlientAI scans thousands of businesses that need your skills.</p></div>
-      <div class="step"><div class="step-bar"></div><div class="snum">04</div><div class="sico">📞</div><h3>AI calls them</h3><p>Our AI voice agent calls in their language. You get warm leads only.</p></div>
+      <div class="step"><div class="snum">01</div><div class="sico">⚡</div><h3>Tell us your skills</h3><p>Select your skill and preferred call language. Takes 2 minutes.</p></div>
+      <div class="step"><div class="snum">02</div><div class="sico">💎</div><h3>Pick your plan</h3><p>Free, Pro or Unlimited — based on how many clients you want.</p></div>
+      <div class="step"><div class="snum">03</div><div class="sico">🎯</div><h3>AI finds clients</h3><p>KlientAI scans thousands of businesses that need your skills.</p></div>
+      <div class="step"><div class="snum">04</div><div class="sico">📞</div><h3>AI calls them</h3><p>Our AI voice agent calls in their language. You get warm leads only.</p></div>
     </div>
   </div>
   <footer>
-    <div class="logo">Klient<b>AI</b></div>
+    <div class="logo">Klient<b style="color:var(--accent)">AI</b></div>
     <div>Built with ❤️ in Kolkata, India 🇮🇳</div>
     <div>© 2026 KlientAI</div>
   </footer>
 </div>
- 
+
 <!-- PAGE 2 -->
 <div class="pg" id="pg2">
   <div class="wrap">
@@ -242,32 +205,32 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
     <p class="sub">Select your freelance skill and preferred language for client calls.</p>
     <div class="tag" style="margin-bottom:.8rem">Your Freelance Skill</div>
     <div class="sk-grid">
-      <div class="sk-card" id="sk0" onclick="pickSkill(0,'Graphic Designer')"><div class="sk-ico">🎨</div><div class="sk-nm">Graphic Designer</div></div>
-      <div class="sk-card" id="sk1" onclick="pickSkill(1,'Web Developer')"><div class="sk-ico">💻</div><div class="sk-nm">Web Developer</div></div>
-      <div class="sk-card" id="sk2" onclick="pickSkill(2,'Video Editor')"><div class="sk-ico">🎬</div><div class="sk-nm">Video Editor</div></div>
-      <div class="sk-card" id="sk3" onclick="pickSkill(3,'Content Writer')"><div class="sk-ico">✍️</div><div class="sk-nm">Content Writer</div></div>
-      <div class="sk-card" id="sk4" onclick="pickSkill(4,'Digital Marketer')"><div class="sk-ico">📱</div><div class="sk-nm">Digital Marketer</div></div>
-      <div class="sk-card" id="sk5" onclick="pickSkill(5,'UI/UX Designer')"><div class="sk-ico">🖥️</div><div class="sk-nm">UI/UX Designer</div></div>
-      <div class="sk-card" id="sk6" onclick="pickSkill(6,'Photographer')"><div class="sk-ico">📸</div><div class="sk-nm">Photographer</div></div>
-      <div class="sk-card" id="sk7" onclick="pickSkill(7,'Other')"><div class="sk-ico">⚡</div><div class="sk-nm">Other</div></div>
+      <div class="sk-card" id="sk0"><div class="sk-ico">🎨</div><div class="sk-nm">Graphic Designer</div></div>
+      <div class="sk-card" id="sk1"><div class="sk-ico">💻</div><div class="sk-nm">Web Developer</div></div>
+      <div class="sk-card" id="sk2"><div class="sk-ico">🎬</div><div class="sk-nm">Video Editor</div></div>
+      <div class="sk-card" id="sk3"><div class="sk-ico">✍️</div><div class="sk-nm">Content Writer</div></div>
+      <div class="sk-card" id="sk4"><div class="sk-ico">📱</div><div class="sk-nm">Digital Marketer</div></div>
+      <div class="sk-card" id="sk5"><div class="sk-ico">🖥️</div><div class="sk-nm">UI/UX Designer</div></div>
+      <div class="sk-card" id="sk6"><div class="sk-ico">📸</div><div class="sk-nm">Photographer</div></div>
+      <div class="sk-card" id="sk7"><div class="sk-ico">⚡</div><div class="sk-nm">Other</div></div>
     </div>
     <div class="err" id="skErr">Please select your skill.</div>
     <div class="tag" style="margin-bottom:.8rem">Preferred Language for Calls</div>
     <div class="lang-row">
-      <button class="lb" id="lg0" onclick="pickLang(0,'Hindi')">🇮🇳 Hindi</button>
-      <button class="lb" id="lg1" onclick="pickLang(1,'Bengali')">🇮🇳 Bengali</button>
-      <button class="lb" id="lg2" onclick="pickLang(2,'Tamil')">🇮🇳 Tamil</button>
-      <button class="lb" id="lg3" onclick="pickLang(3,'Telugu')">🇮🇳 Telugu</button>
-      <button class="lb" id="lg4" onclick="pickLang(4,'English')">🌐 English</button>
+      <button class="lb" id="lg0">🇮🇳 Hindi</button>
+      <button class="lb" id="lg1">🇮🇳 Bengali</button>
+      <button class="lb" id="lg2">🇮🇳 Tamil</button>
+      <button class="lb" id="lg3">🇮🇳 Telugu</button>
+      <button class="lb" id="lg4">🌐 English</button>
     </div>
     <div class="err" id="lgErr">Please select a language.</div>
     <div class="nav-row">
-      <button class="btn btn-s" onclick="showPage(1)">← Back</button>
-      <button class="btn btn-p" onclick="checkPage2()">Choose Your Plan →</button>
+      <button class="btn btns" id="back2">← Back</button>
+      <button class="btn btnp" id="next2">Choose Your Plan →</button>
     </div>
   </div>
 </div>
- 
+
 <!-- PAGE 3 -->
 <div class="pg" id="pg3">
   <div class="wrap">
@@ -278,35 +241,35 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
       <div class="pc" id="pc0">
         <div class="pt">Starter</div><div class="pa">Free</div><div class="pp">Forever free to start</div>
         <ul class="pf"><li>10 AI calls per month</li><li>2 languages</li><li>Basic lead finding</li><li>Email support</li></ul>
-        <button class="psb" onclick="pickPlan(0,'Starter','Free')">Select Plan</button>
+        <button class="psb">Select Plan</button>
       </div>
       <div class="pc" id="pc1">
         <div class="pb">Most Popular</div>
         <div class="pt">Pro</div><div class="pa">₹499</div><div class="pp">per month</div>
         <ul class="pf"><li>100 AI calls per month</li><li>All 5 languages</li><li>Smart lead finding</li><li>Calendar booking</li><li>Priority support</li></ul>
-        <button class="psb" onclick="pickPlan(1,'Pro','₹499/month')">Select Plan</button>
+        <button class="psb">Select Plan</button>
       </div>
       <div class="pc" id="pc2">
         <div class="pt">Unlimited</div><div class="pa">₹1,499</div><div class="pp">per month</div>
         <ul class="pf"><li>Unlimited AI calls</li><li>All languages + more</li><li>Advanced targeting</li><li>Analytics dashboard</li><li>Dedicated support</li></ul>
-        <button class="psb" onclick="pickPlan(2,'Unlimited','₹1,499/month')">Select Plan</button>
+        <button class="psb">Select Plan</button>
       </div>
     </div>
     <div class="err" id="plErr">Please select a plan.</div>
     <div class="nav-row">
-      <button class="btn btn-s" onclick="showPage(2)">← Back</button>
-      <button class="btn btn-p" onclick="checkPage3()">Fill Your Details →</button>
+      <button class="btn btns" id="back3">← Back</button>
+      <button class="btn btnp" id="next3">Fill Your Details →</button>
     </div>
   </div>
 </div>
- 
+
 <!-- PAGE 4 -->
 <div class="pg" id="pg4">
   <div class="wrap">
     <div class="tag">Step 3 of 3</div>
     <div class="h2">Almost there! 🚀</div>
     <p class="sub">Fill in your details and we'll set up your KlientAI account within 24 hours.</p>
-    <div class="plan-pill" id="planPill">✦ Pro Plan — ₹499/month</div>
+    <div class="plan-pill" id="planPill">✦ Select a plan first</div>
     <div class="form-row">
       <div class="fg"><label class="fl">Full Name *</label><input class="fi" id="f-name" type="text" placeholder="Saptarshi Roy"/></div>
       <div class="fg"><label class="fl">Email Address *</label><input class="fi" id="f-email" type="email" placeholder="you@email.com"/></div>
@@ -315,8 +278,8 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
         <select class="fs" id="f-exp">
           <option value="">Select experience</option>
           <option>Less than 1 year</option>
-          <option>1–2 years</option>
-          <option>3–5 years</option>
+          <option>1-2 years</option>
+          <option>3-5 years</option>
           <option>5+ years</option>
         </select>
       </div>
@@ -325,144 +288,187 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 3rem;display:fl
     <div class="fg"><label class="fl">Anything else? (optional)</label><textarea class="ft" id="f-note" placeholder="E.g. I specialize in logo design for startups..."></textarea></div>
     <div class="err" id="fErr">Please fill all required fields.</div>
     <div class="nav-row">
-      <button class="btn btn-s" onclick="showPage(3)">← Back</button>
-      <button class="btn btn-p" onclick="checkPage4()">Submit & Join KlientAI 🚀</button>
+      <button class="btn btns" id="back4">← Back</button>
+      <button class="btn btnp" id="next4">Submit and Join KlientAI</button>
     </div>
   </div>
 </div>
- 
+
 <!-- PAGE 5 -->
 <div class="pg" id="pg5">
   <div class="conf">
     <div class="cico">🎉</div>
-    <div class="ct">You're in, <span id="cname" style="color:var(--accent)">Freelancer</span>!</div>
-    <p class="cs">Welcome to KlientAI. You're one of our earliest members — that means you get the best perks. We'll have your account ready within 24 hours.</p>
+    <div class="ct">You are in, <span id="cname" style="color:var(--accent)">Freelancer</span>!</div>
+    <p class="cs">Welcome to KlientAI. You are one of our earliest members. We will have your account ready within 24 hours.</p>
     <div class="early">
       <div class="early-ico">🏅</div>
-      <div class="early-t">Early Access Member — Batch #001</div>
+      <div class="early-t">Early Access Member — Batch 001</div>
       <div class="early-s">You joined before we officially launched. This badge is yours forever.</div>
     </div>
     <div class="perks">
-      <div class="pk"><div class="pk-ico">🎁</div><div class="pk-t">3 Months Free</div><div class="pk-s">First 3 months on us — no questions asked.</div></div>
-      <div class="pk"><div class="pk-ico">⚡</div><div class="pk-t">Priority Onboarding</div><div class="pk-s">Your account set up before all future users.</div></div>
-      <div class="pk"><div class="pk-ico">🔒</div><div class="pk-t">Price Locked Forever</div><div class="pk-s">Your plan price stays fixed — even if we raise prices.</div></div>
-      <div class="pk"><div class="pk-ico">💬</div><div class="pk-t">Direct Founder Access</div><div class="pk-s">Chat directly with the KlientAI team anytime.</div></div>
+      <div class="pk"><div class="pk-ico">🎁</div><div class="pk-t">3 Months Free</div><div class="pk-s">First 3 months on us.</div></div>
+      <div class="pk"><div class="pk-ico">⚡</div><div class="pk-t">Priority Onboarding</div><div class="pk-s">Set up before all future users.</div></div>
+      <div class="pk"><div class="pk-ico">🔒</div><div class="pk-t">Price Locked Forever</div><div class="pk-s">Your plan price stays fixed.</div></div>
+      <div class="pk"><div class="pk-ico">💬</div><div class="pk-t">Direct Founder Access</div><div class="pk-s">Chat with our team anytime.</div></div>
     </div>
     <div class="tl">
-      <div class="tl-h">What happens next 👇</div>
-      <div class="tl-item"><div class="tl-dot">1</div><div><h4>Within 2 hours</h4><p>You'll receive a confirmation email with your Early Access badge.</p></div></div>
+      <div class="tl-h">What happens next</div>
+      <div class="tl-item"><div class="tl-dot">1</div><div><h4>Within 2 hours</h4><p>You will receive a confirmation on WhatsApp.</p></div></div>
       <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot">2</div><div><h4>Within 24 hours</h4><p>Our team sets up your profile and finds your first batch of leads.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">2</div><div><h4>Within 24 hours</h4><p>Our team sets up your profile and finds your first leads.</p></div></div>
       <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot">3</div><div><h4>Within 48 hours</h4><p>KlientAI starts calling your first clients in your selected language.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">3</div><div><h4>Within 48 hours</h4><p>KlientAI starts calling your first clients in your language.</p></div></div>
       <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot">4</div><div><h4>First week</h4><p>Warm leads arrive in your inbox. You just show up and close the deal.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">4</div><div><h4>First week</h4><p>Warm leads arrive. You just show up and close the deal.</p></div></div>
     </div>
     <div class="guar">
       <div class="guar-ico">🛡️</div>
-      <div><div class="guar-t">30-Day Money Back Guarantee</div><div class="guar-s">If KlientAI doesn't get you at least 3 warm leads in your first 30 days, we'll refund every rupee. No questions asked.</div></div>
+      <div><div class="guar-t">30-Day Money Back Guarantee</div><div class="guar-s">If KlientAI does not get you at least 3 warm leads in 30 days, we refund every rupee. No questions asked.</div></div>
     </div>
     <div class="share-box">
-      <div class="share-t">Know a freelancer who needs this? 🙌</div>
+      <div class="share-t">Know a freelancer who needs this?</div>
       <div class="share-s">Share KlientAI and help them find clients too</div>
       <div class="share-btns">
-        <button class="shr" onclick="shareWA()">📱 WhatsApp</button>
-        <button class="shr" onclick="shareTW()">🐦 Twitter/X</button>
-        <button class="shr" id="copyBtn" onclick="copyL()">🔗 Copy Link</button>
+        <button class="shr" id="waBtn">WhatsApp</button>
+        <button class="shr" id="twBtn">Twitter X</button>
+        <button class="shr" id="cpBtn">Copy Link</button>
       </div>
     </div>
-    <p style="font-size:.78rem;color:var(--muted)">Questions? Reach us at <span style="color:var(--accent)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="345c5158585b745f585d515a40555d1a5d5a">[email&#160;protected]</a></span></p>
+    <p style="font-size:.78rem;color:var(--muted)">Questions? Contact us on WhatsApp</p>
   </div>
 </div>
- 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var skill='', lang='', plan='', planPrice='';
-var prog={1:'0%',2:'25%',3:'50%',4:'75%',5:'100%'};
- 
-function showPage(n){
-  var pages=document.querySelectorAll('.pg');
-  for(var i=0;i<pages.length;i++) pages[i].classList.remove('on');
-  document.getElementById('pg'+n).classList.add('on');
-  document.getElementById('bar').style.width=prog[n];
-  window.scrollTo(0,0);
-  for(var j=1;j<=5;j++){
-    var el=document.getElementById('st'+j);
-    el.classList.remove('on','done');
-    if(j<n) el.classList.add('done');
-    else if(j===n) el.classList.add('on');
+
+<script>
+var skill = '';
+var lang = '';
+var plan = '';
+var planPrice = '';
+var prog = ['0%','25%','50%','75%','100%'];
+var skills = ['Graphic Designer','Web Developer','Video Editor','Content Writer','Digital Marketer','UI/UX Designer','Photographer','Other'];
+var langs = ['Hindi','Bengali','Tamil','Telugu','English'];
+var plans = ['Starter','Pro','Unlimited'];
+var prices = ['Free','499 per month','1499 per month'];
+
+function goTo(n) {
+  var all = document.querySelectorAll('.pg');
+  for (var i = 0; i < all.length; i++) {
+    all[i].classList.remove('on');
+  }
+  document.getElementById('pg' + n).classList.add('on');
+  document.getElementById('bar').style.width = prog[n - 1];
+  window.scrollTo(0, 0);
+  for (var j = 1; j <= 5; j++) {
+    var el = document.getElementById('st' + j);
+    el.classList.remove('on', 'done');
+    if (j < n) { el.classList.add('done'); }
+    else if (j === n) { el.classList.add('on'); }
   }
 }
- 
-function pickSkill(idx,s){
-  var cards=document.querySelectorAll('.sk-card');
-  for(var i=0;i<cards.length;i++) cards[i].classList.remove('sel');
-  document.getElementById('sk'+idx).classList.add('sel');
-  skill=s;
-  document.getElementById('skErr').style.display='none';
-}
- 
-function pickLang(idx,l){
-  var btns=document.querySelectorAll('.lb');
-  for(var i=0;i<btns.length;i++) btns[i].classList.remove('sel');
-  document.getElementById('lg'+idx).classList.add('sel');
-  lang=l;
-  document.getElementById('lgErr').style.display='none';
-}
- 
-function pickPlan(idx,p,pr){
-  var cards=document.querySelectorAll('.pc');
-  for(var i=0;i<cards.length;i++) cards[i].classList.remove('sel');
-  document.getElementById('pc'+idx).classList.add('sel');
-  plan=p; planPrice=pr;
-  document.getElementById('plErr').style.display='none';
-}
- 
-function checkPage2(){
-  var ok=true;
-  if(!skill){document.getElementById('skErr').style.display='block';ok=false;}
-  if(!lang){document.getElementById('lgErr').style.display='block';ok=false;}
-  if(ok) showPage(3);
-}
- 
-function checkPage3(){
-  if(plan===''){
-    document.getElementById('plErr').style.display='block';
-    document.getElementById('plErr').textContent='Please select a plan before continuing.';
-    return false;
+
+window.onload = function() {
+
+  document.getElementById('startBtn').onclick = function() { goTo(2); };
+  document.getElementById('back2').onclick = function() { goTo(1); };
+  document.getElementById('back3').onclick = function() { goTo(2); };
+  document.getElementById('back4').onclick = function() { goTo(3); };
+
+  for (var i = 0; i < 8; i++) {
+    (function(idx) {
+      document.getElementById('sk' + idx).onclick = function() {
+        var cards = document.querySelectorAll('.sk-card');
+        for (var k = 0; k < cards.length; k++) cards[k].classList.remove('sel');
+        this.classList.add('sel');
+        skill = skills[idx];
+        document.getElementById('skErr').style.display = 'none';
+      };
+    })(i);
   }
-  document.getElementById('planPill').textContent='✦ '+plan+' Plan — '+planPrice;
-  showPage(4);
-}
- 
-function checkPage4(){
-  var name=document.getElementById('f-name').value.trim();
-  var email=document.getElementById('f-email').value.trim();
-  var phone=document.getElementById('f-phone').value.trim();
-  var exp=document.getElementById('f-exp').value;
-  var err=document.getElementById('fErr');
-  if(!name||!email||!phone||!exp){
-    err.textContent='Please fill all required fields marked with *';
-    err.style.display='block';return;
+
+  for (var i = 0; i < 5; i++) {
+    (function(idx) {
+      document.getElementById('lg' + idx).onclick = function() {
+        var btns = document.querySelectorAll('.lb');
+        for (var k = 0; k < btns.length; k++) btns[k].classList.remove('sel');
+        this.classList.add('sel');
+        lang = langs[idx];
+        document.getElementById('lgErr').style.display = 'none';
+      };
+    })(i);
   }
-  if(email.indexOf('@')===-1){
-    err.textContent='Please enter a valid email address.';
-    err.style.display='block';return;
+
+  for (var i = 0; i < 3; i++) {
+    (function(idx) {
+      var card = document.getElementById('pc' + idx);
+      var btn = card.querySelector('.psb');
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        var all = document.querySelectorAll('.pc');
+        for (var k = 0; k < all.length; k++) all[k].classList.remove('sel');
+        card.classList.add('sel');
+        plan = plans[idx];
+        planPrice = prices[idx];
+        document.getElementById('plErr').style.display = 'none';
+      };
+    })(i);
   }
-  document.getElementById('cname').textContent=name.split(' ')[0];
-  showPage(5);
-}
- 
-function shareWA(){
-  window.open('https://wa.me/?text='+encodeURIComponent('Found this AI tool for Indian freelancers — KlientAI finds clients and calls them in Hindi, Bengali, Tamil or English using AI! Early users get 3 months FREE: https://saptarshi123-roy.github.io/KlientAi/'),'_blank');
-}
-function shareTW(){
-  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('Tired of Fiverr luck & Upwork fees? KlientAI finds clients & calls them in your language using AI! Early users get 3 months FREE: https://saptarshi123-roy.github.io/KlientAi/ #IndiaFreelancers #AI'),'_blank');
-}
-function copyL(){
-  var url='https://saptarshi123-roy.github.io/KlientAi/';
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(url);
-  } else {
-    var t=document.createElement('textarea');
-    t.value=url;document.body.appendChild(t);t.select();
-    do
+
+  document.getElementById('next2').onclick = function() {
+    var ok = true;
+    if (!skill) { document.getElementById('skErr').style.display = 'block'; ok = false; }
+    if (!lang) { document.getElementById('lgErr').style.display = 'block'; ok = false; }
+    if (ok) goTo(3);
+  };
+
+  document.getElementById('next3').onclick = function() {
+    if (!plan) { document.getElementById('plErr').style.display = 'block'; return; }
+    document.getElementById('planPill').textContent = plan + ' Plan — ' + planPrice;
+    goTo(4);
+  };
+
+  document.getElementById('next4').onclick = function() {
+    var name = document.getElementById('f-name').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var phone = document.getElementById('f-phone').value.trim();
+    var exp = document.getElementById('f-exp').value;
+    var err = document.getElementById('fErr');
+    if (!name || !email || !phone || !exp) {
+      err.textContent = 'Please fill all required fields.';
+      err.style.display = 'block';
+      return;
+    }
+    if (email.indexOf('@') === -1) {
+      err.textContent = 'Please enter a valid email.';
+      err.style.display = 'block';
+      return;
+    }
+    var first = name.split(' ')[0];
+    document.getElementById('cname').textContent = first;
+    goTo(5);
+  };
+
+  document.getElementById('waBtn').onclick = function() {
+    window.open('https://wa.me/?text=Found this AI tool for Indian freelancers — KlientAI finds clients and calls them in Hindi Bengali Tamil or English using AI! Early users get 3 months FREE: https://saptarshi123-roy.github.io/KlientAi/', '_blank');
+  };
+
+  document.getElementById('twBtn').onclick = function() {
+    window.open('https://twitter.com/intent/tweet?text=Tired of Fiverr luck and Upwork fees? KlientAI finds clients and calls them in your language using AI! Early users get 3 months FREE: https://saptarshi123-roy.github.io/KlientAi/', '_blank');
+  };
+
+  document.getElementById('cpBtn').onclick = function() {
+    var url = 'https://saptarshi123-roy.github.io/KlientAi/';
+    var t = document.createElement('textarea');
+    t.value = url;
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+    this.textContent = 'Copied!';
+    var self = this;
+    setTimeout(function() { self.textContent = 'Copy Link'; }, 2000);
+  };
+
+};
+</script>
+</body>
+</html>
+
